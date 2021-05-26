@@ -1,0 +1,25 @@
+topic: ~Intro()
+language: enu
+
+# Defining extra concepts out of words or group of words
+concept:(hello) [hello hi hey greetings "good morning"]
+concept:(good) {feeling} {pretty} [good great well fine okay ok awesome cool "not bad"]
+concept:(bad) {feeling} {pretty} [bad awful terrible horrible "not [great good well]"]
+concept:(i_am_good) {"I am" I'm} ~good {"thank you" thanks}
+concept:(i_am_bad) {honestly} {"I am" I'm} ~bad {unfortunately "sorry to say"}
+#concept:(goodbye) [goodbye bye "see you {later} {soon}" "see ya"]
+concept:(yes) [yes yeah ready "I am"]
+
+# Replying to speech
+u:(~hello) ^goto(HOW_ARE_YOU)
+
+proposal: %HOW_ARE_YOU How are you today?
+    u1:(~good) I'm glad you're doing well! ^goto(READY)
+    u1:(~bad) I'm sorry to hear that. Let me know if there's anything I can do to cheer you up! ^goto(READY)
+
+proposal: %READY Are you ready to learn new things today?
+    u2:(~yes) Cool! Let's get started. $onStopped=1
+    
+
+# Triggering outputs
+#u:(~goodbye) ~goodbye 

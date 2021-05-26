@@ -1,0 +1,24 @@
+topic: ~English1()
+language: enu
+
+# Defining extra concepts out of words or group of words
+concept:(yes) [yes yeah ready "I am"]
+concept:(colour) {really} {like} {love} [red orange yellow green indigo purple violet pink black white grey brown]
+concept:(blue) {really} {like} {love} [blue]
+concept:(animal) {really} {like} {love} [cat bird mouse bunny rabbit lion giraffe elephant snake fish tiger dolphin whale monkey gorilla]
+concept:(dog) {really} {like} {love} [dog "dogs"]
+
+# Replying to speech
+u:(~yes) Awesome! I'll start. ^goto(COLOUR)
+
+proposal: %COLOUR My favourite colour is blue, like the sky. What's yours? 
+    u1:(~colour) Wow, that's a nice colour! I like that, too. ^goto(ANIMAL)
+    u1:(~blue) No way, we have the same favourite colour! That's so cool. ^goto(ANIMAL)
+
+proposal: %ANIMAL I really love dogs! What about you, what's your favourite animal? 
+    u2:(~animal) Nice, that's awesome. I like them, too. $onStopped=1
+    u2:(~dog) We both like dogs! How amazing is that? $onStopped=1
+    
+
+# Triggering outputs
+#u:(~goodbye) ~goodbye 
